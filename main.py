@@ -10,13 +10,6 @@ def get_top_ten_words_from_file(file_path: str) -> dict:
 
         Returns:
             dict: A dictionary containing the top ten most common words in the file, along with their frequencies.
-
-        Example:
-            Given a text file named 'sample.txt' with the following content:
-            "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog."
-
-            >>> get_top_ten_words_from_file('sample.txt')
-            {'the': 4, 'quick': 2, 'brown': 2, 'fox': 2, 'jumps': 2, 'over': 2, 'lazy': 2, 'dog': 2}
     """
     with open(file_path, 'r', encoding='utf-8') as file:
         text = file.read().lower()
@@ -34,30 +27,19 @@ def write_top_words_to_file(most_common_words: dict, output_file: str):
 
         Returns:
             None
-
-        Raises:
-            PermissionError: If the program does not have the necessary permissions to write to the file.
-
-        Example:
-            >>> most_common_words = {'the': 4, 'quick': 2, 'brown': 2, 'fox': 2, 'jumps': 2, 'over': 2, 'lazy': 2, 'dog': 2}
-            >>> write_top_words_to_file(most_common_words, 'output.txt')
-
-            Contents of 'output.txt':
-            the-4
-            quick-2
-            brown-2
-            fox-2
-            jumps-2
-            over-2
-            lazy-2
-            dog-2
     """
     with open(output_file, 'w', encoding='utf-8') as file:
         for word, count in most_common_words.items():
             file.write(f"{word}-{count}\n")
 def main():
+    input_file_path = 'input.txt'
+    output_file_path = 'output.txt'
 
-    ...
+    most_common_words = get_top_ten_words_from_file(input_file_path)
+
+    write_top_words_to_file(most_common_words, output_file_path)
+
+    print(f"Top 10 words written in {output_file_path}")
 
 if __name__ == "__main__":
     main()
